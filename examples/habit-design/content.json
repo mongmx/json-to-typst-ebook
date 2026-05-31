@@ -1,0 +1,377 @@
+{
+  "schema_version": "ebook-layout.v1",
+  "book": {
+    "title": "Habit Design Workbook",
+    "description": "A practical workbook for building small habits that survive real schedules, low motivation, and busy weeks.",
+    "version": "1.0.0",
+    "volume": "Vol. 1",
+    "footer": "Small Systems for Everyday Change"
+  },
+  "layout": {
+    "template": "habit-workbook",
+    "theme": "navy-yellow",
+    "page_size": "a4"
+  },
+  "chapters": [
+    {
+      "id": "chapter-01",
+      "order": 1,
+      "slug": "make-it-obvious",
+      "title": "Make It Obvious",
+      "sections": {
+        "hook": {
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A habit is easier to start when the environment reminds you before willpower has to work."
+            }
+          ]
+        },
+        "concept": {
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Most missed habits are not failures of character."
+            },
+            {
+              "type": "paragraph",
+              "text": "They are often failures of visibility."
+            },
+            {
+              "type": "paragraph",
+              "text": "When the cue is hidden, the habit depends on memory."
+            },
+            {
+              "type": "paragraph",
+              "text": "Design the cue so it appears at the exact moment you want the action to happen."
+            },
+            {
+              "type": "paragraph",
+              "text": "Use placement, timing, and pairing with an existing routine."
+            },
+            {
+              "type": "paragraph",
+              "text": "The best cue is simple enough that you notice it even on a tired day."
+            },
+            {
+              "type": "paragraph",
+              "text": "Make the next action visible before you need motivation."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "category": "Health",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Put a full water bottle next to your keyboard before you go to sleep."
+              }
+            ]
+          },
+          {
+            "category": "Work",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Leave tomorrow's first task written on a sticky note at the center of your desk."
+              }
+            ]
+          }
+        ],
+        "drills": [
+          {
+            "number": 1,
+            "title": "Cue Placement Map",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Choose one small habit you want to repeat this week."
+              },
+              {
+                "type": "paragraph",
+                "text": "Examples:"
+              },
+              {
+                "type": "unordered_list",
+                "items": ["drink water after waking", "stretch after work", "review tomorrow's plan"]
+              },
+              {
+                "type": "paragraph",
+                "text": "Now answer this:"
+              },
+              {
+                "type": "paragraph",
+                "text": "Where should the cue live so I will see it at the right moment?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Habit:"
+              },
+              {
+                "type": "paragraph",
+                "text": "Current cue:"
+              },
+              {
+                "type": "paragraph",
+                "text": "Better cue location:"
+              },
+              {
+                "type": "paragraph",
+                "text": "Set the cue today, not later."
+              }
+            ]
+          }
+        ],
+        "reflection": {
+          "prompts": [
+            "Which cue was easiest to notice?",
+            "Where did the habit still get hidden?",
+            "What will I move, prepare, or label tonight?"
+          ],
+          "closing": "A visible cue turns intention into a simple invitation."
+        }
+      }
+    },
+    {
+      "id": "chapter-02",
+      "order": 2,
+      "slug": "make-it-small",
+      "title": "Make It Small",
+      "sections": {
+        "hook": {
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The habit that survives a messy day is the one that is small enough to begin."
+            }
+          ]
+        },
+        "concept": {
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Ambitious habits often fail because the starting line is too far away."
+            },
+            {
+              "type": "paragraph",
+              "text": "A tiny version protects consistency."
+            },
+            {
+              "type": "paragraph",
+              "text": "The goal is not to make the habit impressive at first."
+            },
+            {
+              "type": "paragraph",
+              "text": "The goal is to make the beginning almost frictionless."
+            },
+            {
+              "type": "paragraph",
+              "text": "Once you start, you can always do more."
+            },
+            {
+              "type": "paragraph",
+              "text": "Shrink the action until it can fit inside your worst realistic day."
+            },
+            {
+              "type": "paragraph",
+              "text": "Consistency grows faster when the minimum version is clear."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "category": "Learning",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Read one page before opening social media, then continue only if you want to."
+              }
+            ]
+          },
+          {
+            "category": "Health",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Do two push-ups or one minute of mobility instead of promising a full workout."
+              }
+            ]
+          }
+        ],
+        "drills": [
+          {
+            "number": 1,
+            "title": "Minimum Version",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Write the habit you actually want."
+              },
+              {
+                "type": "paragraph",
+                "text": "Examples:"
+              },
+              {
+                "type": "unordered_list",
+                "items": ["exercise daily", "study a language", "clean the kitchen"]
+              },
+              {
+                "type": "paragraph",
+                "text": "Now answer this:"
+              },
+              {
+                "type": "paragraph",
+                "text": "What is the smallest version I can do even when the day goes badly?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Full habit:"
+              },
+              {
+                "type": "paragraph",
+                "text": "Two-minute version:"
+              },
+              {
+                "type": "paragraph",
+                "text": "When I will do it:"
+              },
+              {
+                "type": "paragraph",
+                "text": "Keep the minimum version almost laughably small."
+              }
+            ]
+          }
+        ],
+        "reflection": {
+          "prompts": [
+            "What habit did I make smaller?",
+            "Did the smaller version feel easier to begin?",
+            "What would make it even more frictionless?"
+          ],
+          "closing": "A small start keeps the chain alive."
+        }
+      }
+    },
+    {
+      "id": "chapter-03",
+      "order": 3,
+      "slug": "make-it-reviewable",
+      "title": "Make It Reviewable",
+      "sections": {
+        "hook": {
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A habit system improves when you can see what happened without judging yourself."
+            }
+          ]
+        },
+        "concept": {
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Tracking is useful when it creates feedback, not guilt."
+            },
+            {
+              "type": "paragraph",
+              "text": "A weekly review helps you notice patterns."
+            },
+            {
+              "type": "paragraph",
+              "text": "You can see which cues worked, which days were overloaded, and which habit was too large."
+            },
+            {
+              "type": "paragraph",
+              "text": "Review the system before blaming yourself."
+            },
+            {
+              "type": "paragraph",
+              "text": "The question is not whether you were perfect."
+            },
+            {
+              "type": "paragraph",
+              "text": "The question is what the week taught you about the design."
+            },
+            {
+              "type": "paragraph",
+              "text": "Adjust the cue, size, or timing based on evidence."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "category": "Work",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "If deep work failed every afternoon, move it before meetings instead of trying harder."
+              }
+            ]
+          },
+          {
+            "category": "Money",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "If expense tracking failed at night, enter purchases immediately after paying."
+              }
+            ]
+          }
+        ],
+        "drills": [
+          {
+            "number": 1,
+            "title": "Seven-Day Review",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Pick one habit you tried for at least a few days."
+              },
+              {
+                "type": "paragraph",
+                "text": "Examples:"
+              },
+              {
+                "type": "unordered_list",
+                "items": ["morning walk", "daily budget check", "evening shutdown routine"]
+              },
+              {
+                "type": "paragraph",
+                "text": "Now answer this:"
+              },
+              {
+                "type": "paragraph",
+                "text": "What does the last week show about my habit design?"
+              },
+              {
+                "type": "paragraph",
+                "text": "What worked:"
+              },
+              {
+                "type": "paragraph",
+                "text": "What got in the way:"
+              },
+              {
+                "type": "paragraph",
+                "text": "What I will change next week:"
+              },
+              {
+                "type": "paragraph",
+                "text": "Treat the review as calibration, not criticism."
+              }
+            ]
+          }
+        ],
+        "reflection": {
+          "prompts": [
+            "What pattern appeared more than once?",
+            "Which habit design needs adjustment?",
+            "What is my next one-week experiment?"
+          ],
+          "closing": "A review turns effort into learning."
+        }
+      }
+    }
+  ]
+}

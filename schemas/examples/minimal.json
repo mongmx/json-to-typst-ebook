@@ -1,0 +1,115 @@
+{
+  "schema_version": "ebook-layout.v1",
+  "book": {
+    "title": "Habit Design Workbook",
+    "description": "A practical workbook for building small habits that survive real schedules.",
+    "version": "1.0.0",
+    "volume": "Vol. 1",
+    "footer": "Small Systems for Everyday Change"
+  },
+  "layout": {
+    "template": "habit-workbook",
+    "theme": "navy-yellow",
+    "page_size": "a4"
+  },
+  "chapters": [
+    {
+      "id": "chapter-01",
+      "order": 1,
+      "slug": "make-it-obvious",
+      "title": "Make It Obvious",
+      "sections": {
+        "hook": {
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A habit is easier to start when the environment reminds you before willpower has to work."
+            }
+          ]
+        },
+        "concept": {
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Most missed habits are not failures of character."
+            },
+            {
+              "type": "paragraph",
+              "text": "They are often failures of visibility."
+            },
+            {
+              "type": "paragraph",
+              "text": "When the cue is hidden, the habit depends on memory."
+            },
+            {
+              "type": "paragraph",
+              "text": "Design the cue so it appears at the exact moment you want the action to happen."
+            },
+            {
+              "type": "paragraph",
+              "text": "Use placement, timing, and pairing with an existing routine."
+            },
+            {
+              "type": "paragraph",
+              "text": "The best cue is simple enough that you notice it even on a tired day."
+            },
+            {
+              "type": "paragraph",
+              "text": "Make the next action visible before you need motivation."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "category": "Health",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Put a full water bottle next to your keyboard before you go to sleep."
+              }
+            ]
+          }
+        ],
+        "drills": [
+          {
+            "number": 1,
+            "title": "Cue Placement Map",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Choose one small habit you want to repeat this week."
+              },
+              {
+                "type": "paragraph",
+                "text": "Examples:"
+              },
+              {
+                "type": "unordered_list",
+                "items": ["drink water after waking", "stretch after work"]
+              },
+              {
+                "type": "paragraph",
+                "text": "Now answer this:"
+              },
+              {
+                "type": "paragraph",
+                "text": "Where should the cue live so I will see it at the right moment?"
+              },
+              {
+                "type": "paragraph",
+                "text": "Set the cue today, not later."
+              }
+            ]
+          }
+        ],
+        "reflection": {
+          "prompts": [
+            "Which cue was easiest to notice?",
+            "What will I move, prepare, or label tonight?"
+          ],
+          "closing": "A visible cue turns intention into a simple invitation."
+        }
+      }
+    }
+  ]
+}

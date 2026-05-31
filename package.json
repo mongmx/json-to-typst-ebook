@@ -1,0 +1,30 @@
+{
+  "name": "json-to-typst-ebook",
+  "version": "0.1.0",
+  "description": "A JSON-to-Typst ebook layout engine for AI-generated workbook and nonfiction content.",
+  "type": "module",
+  "bin": {
+    "ebook-layout": "./src/cli.mjs"
+  },
+  "scripts": {
+    "validate": "node src/cli.mjs validate examples/habit-design/content.json",
+    "build:example": "node src/cli.mjs build --input examples/habit-design/content.json --template habit-workbook --output dist/habit-design.pdf --preview dist/pages",
+    "build:modern": "node src/cli.mjs build --input examples/habit-design/content.json --template modern-workbook --output dist/habit-design-modern.pdf --preview dist/modern-pages",
+    "build:minimal": "node src/cli.mjs build --input schemas/examples/minimal.json --template habit-workbook --output dist/minimal.pdf --preview dist/minimal-pages"
+  },
+  "keywords": [
+    "typst",
+    "ebook",
+    "pdf",
+    "publishing",
+    "json-schema",
+    "ai"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ajv": "^8.17.1"
+  },
+  "engines": {
+    "node": ">=16.14"
+  }
+}
