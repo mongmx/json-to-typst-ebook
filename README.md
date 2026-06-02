@@ -171,7 +171,7 @@ Poster-style visual content uses the same `slides-layout.v1` contract with `type
 {
   "type": "poster",
   "title": "ดวงอาทิตย์",
-  "background_image": "1000004194.jpg",
+  "background_image_url": "https://example.com/bg-poster-01.jpg",
   "brand_kicker": "iKL",
   "brand_name": "STUDIO",
   "quote": "ดวงอาทิตย์\nต่อให้มันร้อนแรงแค่ไหน",
@@ -203,6 +203,22 @@ page height in inches = height_px / dpi
 For example, `1920x1080` at `144dpi` becomes `13.333in x 7.5in`.
 
 Poster background images are resolved relative to the input JSON file and copied into the Typst work directory during build, so examples can keep images beside their `content.json`.
+
+Poster background images can also be downloaded from online storage with `background_image_url`:
+
+```json
+{
+  "background_image_url": "https://cdn.example.com/bg-poster-01.jpg"
+}
+```
+
+Rules for remote images:
+
+- Use `https://` only.
+- Use a direct image URL or signed URL that returns image bytes directly.
+- Supported extensions: `.jpg`, `.jpeg`, `.png`, `.webp`.
+- The response should have an `image/*` content type.
+- Do not use preview pages such as ordinary Google Drive share pages unless they are direct-download image URLs.
 
 ## Repository Layout
 

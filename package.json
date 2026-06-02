@@ -28,7 +28,7 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@mongmx/ai-flywheel-content-schemas": "github:mongmx/ai-flywheel-content-schemas#ee8d58344297761ff6bfb6b35a442f2bf0b2e31d",
+    "@mongmx/ai-flywheel-content-schemas": "github:mongmx/ai-flywheel-content-schemas#9901d296352aa02013ff936c67fbc6e6cd2b6baf",
     "ajv": "^8.17.1"
   },
   "engines": {

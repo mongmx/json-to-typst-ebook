@@ -8,6 +8,7 @@ import { validateFile } from './validate.mjs';
 import { ebookSchemaPath, slidesSchemaPath } from './schema-paths.mjs';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const imageExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 
 function run(command, args) {
   return new Promise((resolvePromise, reject) => {
@@ -24,18 +25,77 @@ async function prepareSlideAssets(content, inputPath, workdirPath) {
   let assetIndex = 1;
 
   for (const slide of content.slides || []) {
-    if (slide.type !== 'poster' || !slide.background_image) continue;
+    if (slide.type !== 'poster') continue;
 
-    const sourcePath = resolve(dirname(inputPath), slide.background_image);
-    const extension = extname(sourcePath) || extname(slide.background_image) || '.jpg';
-    const baseName = basename(sourcePath, extension).replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'image';
+    const source = await preparePosterImageSource(slide, inputPath);
+    if (!source) continue;
+
+    const extension = source.extension;
+    const baseName = source.baseName.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'image';
     const assetName = `${String(assetIndex).padStart(2, '0')}-${baseName}${extension}`;
 
     await mkdir(assetDir, { recursive: true });
-    await cp(sourcePath, join(assetDir, assetName));
+    if (source.type === 'url') {
+      await downloadImage(source.url, join(assetDir, assetName));
+    } else {
+      await cp(source.path, join(assetDir, assetName));
+    }
     slide.background_image = join('assets', assetName);
     assetIndex += 1;
   }
+}
+
+async function preparePosterImageSource(slide, inputPath) {
+  if (slide.background_image_url) {
+    const url = parseImageUrl(slide.background_image_url);
+    return {
+      type: 'url',
+      url,
+      extension: imageExtension(url.pathname),
+      baseName: basename(url.pathname, extname(url.pathname)) || 'remote-image'
+    };
+  }
+
+  if (!slide.background_image) return null;
+
+  const sourcePath = resolve(dirname(inputPath), slide.background_image);
+  return {
+    type: 'file',
+    path: sourcePath,
+    extension: imageExtension(sourcePath),
+    baseName: basename(sourcePath, extname(sourcePath))
+  };
+}
+
+function parseImageUrl(value) {
+  const url = new URL(value);
+  if (url.protocol !== 'https:') {
+    throw new Error(`background_image_url must use https: ${value}`);
+  }
+  return url;
+}
+
+function imageExtension(value) {
+  const extension = extname(value).toLowerCase();
+  if (!imageExtensions.has(extension)) {
+    throw new Error(`Background image must use one of: ${Array.from(imageExtensions).join(', ')}`);
+  }
+  return extension;
+}
+
+async function downloadImage(url, outputPath) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to download background image: ${url} (${response.status} ${response.statusText})`);
+  }
+
+  const contentType = response.headers.get('content-type') || '';
+  if (contentType && !contentType.startsWith('image/')) {
+    throw new Error(`background_image_url did not return an image content type: ${contentType}`);
+  }
+
+  const bytes = Buffer.from(await response.arrayBuffer());
+  await writeFile(outputPath, bytes);
 }
 
 function formatNumber(value) {
