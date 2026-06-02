@@ -1,10 +1,10 @@
 # JSON to Typst Ebook
 
-A JSON-to-Typst publishing layout engine for AI-generated workbook, nonfiction, and slide content.
+A JSON-to-Typst publishing engine for AI-generated ebooks, workbooks, slide decks, and visual content.
 
-This project accepts a structured content package, validates it against a public JSON schema, generates Typst source, and compiles it into PDF outputs with optional PNG page previews.
+This project accepts structured content packages, validates them against public JSON schemas, generates Typst source, and compiles them into PDF outputs with optional PNG page previews.
 
-It is designed for workflows where one agent writes or structures the content, and this engine handles layout, pagination, and export.
+It is designed for workflows where one agent writes or structures the content, and this engine handles layout, pagination, visual composition, and export.
 
 ## Pipeline
 
@@ -22,6 +22,12 @@ Content Agent
   -> Typst generation
   -> Typst compile
   -> PDF slides + PNG previews
+
+Content Agent
+  -> poster slide JSON
+  -> image asset preparation
+  -> Typst visual composition
+  -> PDF poster + PNG preview
 ```
 
 ## Requirements
@@ -49,6 +55,8 @@ npm run build:modern
 npm run build:classic
 npm run build:modern-classic
 npm run build:slides
+npm run validate:poster
+npm run build:poster
 ```
 
 Outputs:
@@ -58,7 +66,10 @@ Outputs:
 - `dist/habit-design-classic.pdf`
 - `dist/habit-design-modern-classic.pdf`
 - `dist/layout-as-code-slides.pdf`
+- `dist/poster-design.pdf`
 - `dist/pages/page-001.png`, etc.
+- `dist/layout-as-code-slides-pages/slide-1.png`, etc.
+- `dist/poster-design-pages/slide-1.png`
 
 ## CLI
 
@@ -78,6 +89,14 @@ ebook-layout build-slides \
   --template quiet-power-slides \
   --output dist/layout-as-code-slides.pdf \
   --preview dist/layout-as-code-slides-pages
+
+ebook-layout validate-slides examples/poster-design/content.json
+
+ebook-layout build-slides \
+  --input examples/poster-design/content.json \
+  --template quiet-power-slides \
+  --output dist/poster-design.pdf \
+  --preview dist/poster-design-pages
 ```
 
 Available templates:
@@ -87,6 +106,8 @@ Available templates:
 - `classic-textbook`: classic textbook layout with serif typography, generous margins, and simple rules
 - `modern-classic-textbook`: white, spacious textbook layout with modern sans-serif typography
 - `quiet-power-slides`: quiet 16:9 presentation layout for publishing infrastructure stories
+
+Supported slide content includes hero slides, structured presentation slides, closing slides, and poster-style visual slides with full-bleed background images and text overlays.
 
 ## Content Contract
 
@@ -133,6 +154,24 @@ Minimal slides shape:
 }
 ```
 
+Poster-style visual content uses the same `slides-layout.v1` contract with `type: "poster"`:
+
+```json
+{
+  "type": "poster",
+  "title": "ดวงอาทิตย์",
+  "background_image": "1000004194.jpg",
+  "brand_kicker": "iKL",
+  "brand_name": "STUDIO",
+  "quote": "ดวงอาทิตย์\nต่อให้มันร้อนแรงแค่ไหน",
+  "subtitle": "สุดท้ายมันก็มีวันที่ต้องดับ",
+  "footer": "iKL Studio",
+  "overlay": 58
+}
+```
+
+Poster background images are resolved relative to the input JSON file and copied into the Typst work directory during build, so examples can keep images beside their `content.json`.
+
 ## Repository Layout
 
 ```text
@@ -155,6 +194,7 @@ templates/
 examples/
   habit-design/
   layout-as-code-slides/
+  poster-design/
 dist/
 ```
 
@@ -162,6 +202,7 @@ dist/
 
 - v0.1: one schema, one template, PDF and PNG output
 - v0.2: multiple templates and themes
-- v0.3: better diagnostics and visual QA helpers
-- v0.4: multilingual layout support
-- v0.5: template plugin API
+- v0.3: slide deck generation and poster-style visual content
+- v0.4: better diagnostics and visual QA helpers
+- v0.5: multilingual layout support
+- v0.6: template plugin API
