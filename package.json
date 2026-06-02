@@ -8,9 +8,15 @@
   },
   "scripts": {
     "validate": "node src/cli.mjs validate examples/habit-design/content.json",
+    "validate:slides": "node src/cli.mjs validate-slides examples/layout-as-code-slides/content.json",
     "build:example": "node src/cli.mjs build --input examples/habit-design/content.json --template habit-workbook --output dist/habit-design.pdf --preview dist/pages",
     "build:modern": "node src/cli.mjs build --input examples/habit-design/content.json --template modern-workbook --output dist/habit-design-modern.pdf --preview dist/modern-pages",
-    "build:minimal": "node src/cli.mjs build --input schemas/examples/minimal.json --template habit-workbook --output dist/minimal.pdf --preview dist/minimal-pages"
+    "build:classic": "node src/cli.mjs build --input examples/habit-design/content.json --template classic-textbook --output dist/habit-design-classic.pdf --preview dist/classic-pages",
+    "build:modern-classic": "node src/cli.mjs build --input examples/habit-design/content.json --template modern-classic-textbook --output dist/habit-design-modern-classic.pdf --preview dist/modern-classic-pages",
+    "build:minimal": "node src/cli.mjs build --input schemas/examples/minimal.json --template habit-workbook --output dist/minimal.pdf --preview dist/minimal-pages",
+    "build:slides": "node src/cli.mjs build-slides --input examples/layout-as-code-slides/content.json --template quiet-power-slides --output dist/layout-as-code-slides.pdf --preview dist/layout-as-code-slides-pages",
+    "validate:poster": "node src/cli.mjs validate-slides examples/poster-design/content.json",
+    "build:poster": "node src/cli.mjs build-slides --input examples/poster-design/content.json --template quiet-power-slides --output dist/poster-design.pdf --preview dist/poster-design-pages"
   },
   "keywords": [
     "typst",

@@ -1,0 +1,176 @@
+{
+  "schema_version": "slides-layout.v1",
+  "document_type": "slides",
+  "deck": {
+    "title": "Layout as Code",
+    "subtitle": "From Manual Design to AI-Native Publishing Infrastructure",
+    "footer": "json-to-typst-ebook"
+  },
+  "layout": {
+    "template": "quiet-power-slides",
+    "theme": "quiet-power",
+    "page_size": "16:9",
+    "width": "13.333in",
+    "height": "7.5in"
+  },
+  "slides": [
+    {
+      "type": "hero",
+      "title": "Layout as Code",
+      "subtitle": "Building an AI-Native Publishing Engine",
+      "kicker": "JSON -> Typst -> PDF",
+      "footer": "json-to-typst-ebook"
+    },
+    {
+      "type": "problem",
+      "title": "The Problem",
+      "headline": "AI can generate content fast. Production is still slow.",
+      "items": [
+        "Content creation is no longer the main bottleneck.",
+        "Layout work still depends on manual tools and repetitive formatting.",
+        "Every ebook, workbook, and slide deck often requires rebuilding the layout from scratch."
+      ]
+    },
+    {
+      "type": "shift",
+      "title": "The Shift",
+      "columns": [
+        {
+          "label": "Old Model",
+          "items": [
+            "Human writes content",
+            "Designer formats pages",
+            "PDF is exported manually"
+          ]
+        },
+        {
+          "label": "New Model",
+          "items": [
+            "AI generates structured content",
+            "Layout engine applies templates",
+            "Publishable assets are rendered automatically"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "definition",
+      "title": "What Is Layout as Code?",
+      "statement": "Layout becomes a reusable system instead of a one-time manual design task.",
+      "items": [
+        "Content is described as structured data.",
+        "Templates control presentation.",
+        "The same source can be reused across multiple formats."
+      ]
+    },
+    {
+      "type": "architecture",
+      "title": "Core Architecture",
+      "steps": [
+        "content.json",
+        "Typst templates",
+        "json-to-typst-ebook",
+        "PDF output"
+      ],
+      "caption": "A simple pipeline for turning structured content into publishable documents."
+    },
+    {
+      "type": "why",
+      "title": "Why JSON?",
+      "headline": "JSON turns content into infrastructure.",
+      "items": [
+        "AI can generate it reliably.",
+        "It separates content from design.",
+        "It can power ebooks, slides, landing pages, and future products."
+      ]
+    },
+    {
+      "type": "why",
+      "title": "Why Typst?",
+      "headline": "Typst gives modern layout control with programmable templates.",
+      "items": [
+        "Clean syntax",
+        "Fast PDF generation",
+        "Strong document layout features",
+        "A modern alternative to LaTeX"
+      ]
+    },
+    {
+      "type": "evolution",
+      "title": "From Layout as Code to Publishing as Code",
+      "timeline": [
+        {
+          "stage": "LaTeX",
+          "description": "Document as Code"
+        },
+        {
+          "stage": "Typst",
+          "description": "Modern Layout as Code"
+        },
+        {
+          "stage": "AI + JSON",
+          "description": "Publishing as Code"
+        }
+      ]
+    },
+    {
+      "type": "factory",
+      "title": "The Factory Analogy",
+      "mapping": [
+        {
+          "concept": "AI",
+          "role": "Craftsman"
+        },
+        {
+          "concept": "Layout Engine",
+          "role": "Production Line"
+        },
+        {
+          "concept": "Publishing System",
+          "role": "Factory"
+        }
+      ],
+      "statement": "The goal is not to create one document faster. The goal is to build a machine that can create many assets consistently."
+    },
+    {
+      "type": "use_cases",
+      "title": "Real Use Cases",
+      "items": [
+        "Educational workbooks",
+        "Language learning materials",
+        "Business reports",
+        "Lead magnets",
+        "Digital product publishing",
+        "AI-generated books",
+        "PDF slide decks"
+      ]
+    },
+    {
+      "type": "pipeline",
+      "title": "Publishing as Code Pipeline",
+      "steps": [
+        "Idea",
+        "AI generation",
+        "Structured JSON",
+        "Layout engine",
+        "PDF",
+        "Landing page",
+        "Storefront",
+        "Distribution"
+      ]
+    },
+    {
+      "type": "vision",
+      "title": "The Vision",
+      "statement": "The future of publishing is not just writing faster. The future is building systems that publish.",
+      "footer": "Layout as Code -> Publishing as Code -> AI Flywheel"
+    },
+    {
+      "type": "closing",
+      "title": "json-to-typst-ebook",
+      "subtitle": "Open-source publishing infrastructure for the AI era.",
+      "cta": "Build the system. Publish at scale.",
+      "url": "github.com/mongmx/json-to-typst-ebook"
+    }
+  ]
+}

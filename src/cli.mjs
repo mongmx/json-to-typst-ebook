@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { resolve } from 'node:path';
 import { validateFile } from './validate.mjs';
-import { buildBook } from './render.mjs';
+import { buildBook, buildSlides } from './render.mjs';
 
 function parseArgs(argv) {
   const positional = [];
@@ -23,7 +23,9 @@ function parseArgs(argv) {
 function usage() {
   console.log(`Usage:
   ebook-layout validate <content.json>
-  ebook-layout build --input <content.json> --output <book.pdf> [--preview <pages-dir>] [--template habit-workbook]`);
+  ebook-layout validate-slides <content.json>
+  ebook-layout build --input <content.json> --output <book.pdf> [--preview <pages-dir>] [--template habit-workbook]
+  ebook-layout build-slides --input <content.json> --output <slides.pdf> [--preview <pages-dir>] [--template quiet-power-slides]`);
 }
 
 const { positional, flags } = parseArgs(process.argv.slice(2));
@@ -39,6 +41,15 @@ try {
 
     await validateFile(resolve(input), resolve('schemas/ebook-layout.v1.schema.json'));
     console.log('Content package is valid.');
+  } else if (command === 'validate-slides') {
+    const input = positional[1];
+    if (!input) {
+      usage();
+      process.exit(1);
+    }
+
+    await validateFile(resolve(input), resolve('schemas/slides-layout.v1.schema.json'));
+    console.log('Slides package is valid.');
   } else if (command === 'build') {
     const input = flags.get('input');
     if (!input) {
@@ -51,6 +62,19 @@ try {
       output: flags.get('output') || 'dist/book.pdf',
       preview: flags.get('preview'),
       template: flags.get('template') || 'habit-workbook'
+    });
+  } else if (command === 'build-slides') {
+    const input = flags.get('input');
+    if (!input) {
+      usage();
+      process.exit(1);
+    }
+
+    await buildSlides({
+      input,
+      output: flags.get('output') || 'dist/slides.pdf',
+      preview: flags.get('preview'),
+      template: flags.get('template') || 'quiet-power-slides'
     });
   } else {
     usage();

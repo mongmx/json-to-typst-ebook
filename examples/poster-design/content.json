@@ -1,0 +1,28 @@
+{
+  "schema_version": "slides-layout.v1",
+  "document_type": "slides",
+  "deck": {
+    "title": "Thai Quote Poster",
+    "footer": "iKL Studio"
+  },
+  "layout": {
+    "template": "quiet-power-slides",
+    "theme": "quiet-power",
+    "page_size": "16:9",
+    "width": "13.333in",
+    "height": "7.5in"
+  },
+  "slides": [
+    {
+      "type": "poster",
+      "title": "ดวงอาทิตย์",
+      "background_image": "1000004194.jpg",
+      "brand_kicker": "iKL",
+      "brand_name": "STUDIO",
+      "quote": "ดวงอาทิตย์\nต่อให้มันร้อนแรงแค่ไหน",
+      "subtitle": "สุดท้ายมันก็มีวันที่ต้องดับ",
+      "footer": "iKL Studio",
+      "overlay": 58
+    }
+  ]
+}

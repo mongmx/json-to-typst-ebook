@@ -1,0 +1,458 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flywheel.local/schemas/slides-layout.v1.schema.json",
+  "title": "Slides Layout Content Package",
+  "description": "Contract between an upstream content agent and the Typst slide layout engine.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "document_type", "deck", "layout", "slides"],
+  "properties": {
+    "schema_version": {
+      "const": "slides-layout.v1"
+    },
+    "document_type": {
+      "const": "slides"
+    },
+    "deck": {
+      "$ref": "#/$defs/deck"
+    },
+    "layout": {
+      "$ref": "#/$defs/layoutOptions"
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/slide"
+      }
+    }
+  },
+  "$defs": {
+    "deck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "footer": {
+          "type": "string"
+        }
+      }
+    },
+    "layoutOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["template", "theme", "page_size"],
+      "properties": {
+        "template": {
+          "type": "string",
+          "default": "quiet-power-slides"
+        },
+        "theme": {
+          "type": "string",
+          "default": "quiet-power"
+        },
+        "page_size": {
+          "enum": ["16:9"]
+        },
+        "width": {
+          "type": "string",
+          "default": "13.333in"
+        },
+        "height": {
+          "type": "string",
+          "default": "7.5in"
+        }
+      }
+    },
+    "slide": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/heroSlide"
+        },
+        {
+          "$ref": "#/$defs/posterSlide"
+        },
+        {
+          "$ref": "#/$defs/headlineListSlide"
+        },
+        {
+          "$ref": "#/$defs/shiftSlide"
+        },
+        {
+          "$ref": "#/$defs/definitionSlide"
+        },
+        {
+          "$ref": "#/$defs/architectureSlide"
+        },
+        {
+          "$ref": "#/$defs/evolutionSlide"
+        },
+        {
+          "$ref": "#/$defs/factorySlide"
+        },
+        {
+          "$ref": "#/$defs/useCasesSlide"
+        },
+        {
+          "$ref": "#/$defs/pipelineSlide"
+        },
+        {
+          "$ref": "#/$defs/visionSlide"
+        },
+        {
+          "$ref": "#/$defs/closingSlide"
+        }
+      ]
+    },
+    "baseSlide": {
+      "type": "object",
+      "required": ["type", "title"],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "heroSlide": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/baseSlide"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "title"],
+          "properties": {
+            "type": {
+              "const": "hero"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subtitle": {
+              "type": "string"
+            },
+            "kicker": {
+              "type": "string"
+            },
+            "footer": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "posterSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "background_image", "quote"],
+      "properties": {
+        "type": {
+          "const": "poster"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "background_image": {
+          "type": "string",
+          "minLength": 1
+        },
+        "brand_kicker": {
+          "type": "string",
+          "default": ""
+        },
+        "brand_name": {
+          "type": "string",
+          "default": ""
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtitle": {
+          "type": "string",
+          "default": ""
+        },
+        "footer": {
+          "type": "string"
+        },
+        "overlay": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 62
+        }
+      }
+    },
+    "headlineListSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "headline", "items"],
+      "properties": {
+        "type": {
+          "enum": ["problem", "why"]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "headline": {
+          "type": "string",
+          "minLength": 1
+        },
+        "items": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "shiftSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "columns"],
+      "properties": {
+        "type": {
+          "const": "shift"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "columns": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/labeledList"
+          }
+        }
+      }
+    },
+    "definitionSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "statement", "items"],
+      "properties": {
+        "type": {
+          "const": "definition"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "items": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "architectureSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "steps"],
+      "properties": {
+        "type": {
+          "const": "architecture"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "$ref": "#/$defs/stringList"
+        },
+        "caption": {
+          "type": "string"
+        }
+      }
+    },
+    "pipelineSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "steps"],
+      "properties": {
+        "type": {
+          "const": "pipeline"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "evolutionSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "timeline"],
+      "properties": {
+        "type": {
+          "const": "evolution"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timeline": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["stage", "description"],
+            "properties": {
+              "stage": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "factorySlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "mapping", "statement"],
+      "properties": {
+        "type": {
+          "const": "factory"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mapping": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["concept", "role"],
+            "properties": {
+              "concept": {
+                "type": "string",
+                "minLength": 1
+              },
+              "role": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "useCasesSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "items"],
+      "properties": {
+        "type": {
+          "const": "use_cases"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "items": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "visionSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "statement"],
+      "properties": {
+        "type": {
+          "const": "vision"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "footer": {
+          "type": "string"
+        }
+      }
+    },
+    "closingSlide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "subtitle", "cta", "url"],
+      "properties": {
+        "type": {
+          "const": "closing"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cta": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "labeledList": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "items"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "items": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}
