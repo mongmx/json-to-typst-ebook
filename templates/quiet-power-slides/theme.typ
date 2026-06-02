@@ -1,3 +1,5 @@
+#import "config.typ": page-width, page-height
+
 #let ink = rgb("#111827")
 #let muted = rgb("#667085")
 #let paper = rgb("#fbfaf7")
@@ -13,8 +15,8 @@
 #let red = rgb("#b94a48")
 #let red-soft = rgb("#fff0ef")
 
-#let page-w = 13.333in
-#let page-h = 7.5in
+#let page-w = page-width
+#let page-h = page-height
 #let margin-x = 0.72in
 #let margin-y = 0.48in
 

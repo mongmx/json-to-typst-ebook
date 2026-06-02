@@ -156,6 +156,11 @@ Minimal slides shape:
     "theme": "quiet-power",
     "page_size": "16:9"
   },
+  "output": {
+    "width_px": 1920,
+    "height_px": 1080,
+    "dpi": 144
+  },
   "slides": []
 }
 ```
@@ -175,6 +180,27 @@ Poster-style visual content uses the same `slides-layout.v1` contract with `type
   "overlay": 58
 }
 ```
+
+For pixel-based output, set the optional root-level `output` object:
+
+```json
+{
+  "output": {
+    "width_px": 1920,
+    "height_px": 1080,
+    "dpi": 144
+  }
+}
+```
+
+The engine converts pixels to Typst page lengths during build:
+
+```text
+page width in inches = width_px / dpi
+page height in inches = height_px / dpi
+```
+
+For example, `1920x1080` at `144dpi` becomes `13.333in x 7.5in`.
 
 Poster background images are resolved relative to the input JSON file and copied into the Typst work directory during build, so examples can keep images beside their `content.json`.
 

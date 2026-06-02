@@ -1,4 +1,4 @@
-import { cp, mkdir } from 'node:fs/promises';
+import { cp, mkdir, writeFile } from 'node:fs/promises';
 import { basename, dirname, extname, join, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -36,6 +36,43 @@ async function prepareSlideAssets(content, inputPath, workdirPath) {
     slide.background_image = join('assets', assetName);
     assetIndex += 1;
   }
+}
+
+function formatNumber(value) {
+  return Number(value.toFixed(4)).toString();
+}
+
+function safeTypstLength(value, fallback) {
+  if (typeof value !== 'string') return fallback;
+  return /^[0-9]+(?:\.[0-9]+)?(?:pt|mm|cm|in)$/.test(value) ? value : fallback;
+}
+
+function slidePageSize(content) {
+  const output = content.output || {};
+
+  if (Number.isFinite(output.width_px) && Number.isFinite(output.height_px)) {
+    const dpi = Number.isFinite(output.dpi) && output.dpi > 0 ? output.dpi : 144;
+    return {
+      width: `${formatNumber(output.width_px / dpi)}in`,
+      height: `${formatNumber(output.height_px / dpi)}in`
+    };
+  }
+
+  return {
+    width: safeTypstLength(content.layout?.width, '13.333in'),
+    height: safeTypstLength(content.layout?.height, '7.5in')
+  };
+}
+
+async function writeSlidesConfig(content, outputFile) {
+  const { width, height } = slidePageSize(content);
+  const source = [
+    `#let page-width = ${width}`,
+    `#let page-height = ${height}`,
+    ''
+  ].join('\n');
+
+  await writeFile(outputFile, source);
 }
 
 export async function buildBook({
@@ -84,6 +121,7 @@ export async function buildSlides({
 
   await mkdir(workdirPath, { recursive: true });
   await prepareSlideAssets(content, inputPath, workdirPath);
+  await writeSlidesConfig(content, join(workdirPath, 'config.typ'));
   await cp(join(templatePath, 'theme.typ'), join(workdirPath, 'theme.typ'));
   await cp(join(templatePath, 'components.typ'), join(workdirPath, 'components.typ'));
   await writeSlidesTypst(content, join(workdirPath, 'slides.typ'));

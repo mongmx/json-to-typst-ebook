@@ -8,9 +8,7 @@
   "layout": {
     "template": "quiet-power-slides",
     "theme": "quiet-power",
-    "page_size": "16:9",
-    "width": "13.333in",
-    "height": "7.5in"
+    "page_size": "16:9"
   },
   "slides": [
     {
@@ -24,5 +22,10 @@
       "footer": "iKL Studio",
       "overlay": 58
     }
-  ]
+  ],
+  "output": {
+    "width_px": 1920,
+    "height_px": 1080,
+    "dpi": 144
+  }
 }
