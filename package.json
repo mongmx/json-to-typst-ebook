@@ -1,7 +1,7 @@
 {
   "name": "json-to-typst-ebook",
   "version": "0.1.0",
-  "description": "A JSON-to-Typst ebook layout engine for AI-generated workbook and nonfiction content.",
+  "description": "A JSON-to-Typst publishing engine for AI-generated ebooks, workbooks, slide decks, and visual content.",
   "type": "module",
   "bin": {
     "ebook-layout": "./src/cli.mjs"
@@ -13,7 +13,7 @@
     "build:modern": "node src/cli.mjs build --input examples/habit-design/content.json --template modern-workbook --output dist/habit-design-modern.pdf --preview dist/modern-pages",
     "build:classic": "node src/cli.mjs build --input examples/habit-design/content.json --template classic-textbook --output dist/habit-design-classic.pdf --preview dist/classic-pages",
     "build:modern-classic": "node src/cli.mjs build --input examples/habit-design/content.json --template modern-classic-textbook --output dist/habit-design-modern-classic.pdf --preview dist/modern-classic-pages",
-    "build:minimal": "node src/cli.mjs build --input schemas/examples/minimal.json --template habit-workbook --output dist/minimal.pdf --preview dist/minimal-pages",
+    "build:minimal": "node src/cli.mjs build --input node_modules/@mongmx/ai-flywheel-content-schemas/examples/ebook-minimal.json --template habit-workbook --output dist/minimal.pdf --preview dist/minimal-pages",
     "build:slides": "node src/cli.mjs build-slides --input examples/layout-as-code-slides/content.json --template quiet-power-slides --output dist/layout-as-code-slides.pdf --preview dist/layout-as-code-slides-pages",
     "validate:poster": "node src/cli.mjs validate-slides examples/poster-design/content.json",
     "build:poster": "node src/cli.mjs build-slides --input examples/poster-design/content.json --template quiet-power-slides --output dist/poster-design.pdf --preview dist/poster-design-pages"
@@ -28,6 +28,7 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
+    "@mongmx/ai-flywheel-content-schemas": "github:mongmx/ai-flywheel-content-schemas",
     "ajv": "^8.17.1"
   },
   "engines": {

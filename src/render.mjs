@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { writeTypst } from './generate-typst.mjs';
 import { writeSlidesTypst } from './generate-slides-typst.mjs';
 import { validateFile } from './validate.mjs';
+import { ebookSchemaPath, slidesSchemaPath } from './schema-paths.mjs';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -42,12 +43,12 @@ export async function buildBook({
   output = 'dist/book.pdf',
   preview,
   template = 'habit-workbook',
-  schema = 'schemas/ebook-layout.v1.schema.json',
+  schema = ebookSchemaPath,
   workdir = 'dist/.work'
 }) {
   const inputPath = resolve(input);
   const outputPath = resolve(output);
-  const schemaPath = resolve(projectRoot, schema);
+  const schemaPath = resolve(schema);
   const workdirPath = resolve(workdir);
   const templatePath = resolve(projectRoot, 'templates', template);
   const content = await validateFile(inputPath, schemaPath);
@@ -71,12 +72,12 @@ export async function buildSlides({
   output = 'dist/slides.pdf',
   preview,
   template = 'quiet-power-slides',
-  schema = 'schemas/slides-layout.v1.schema.json',
+  schema = slidesSchemaPath,
   workdir = 'dist/.work-slides'
 }) {
   const inputPath = resolve(input);
   const outputPath = resolve(output);
-  const schemaPath = resolve(projectRoot, schema);
+  const schemaPath = resolve(schema);
   const workdirPath = resolve(workdir);
   const templatePath = resolve(projectRoot, 'templates', template);
   const content = await validateFile(inputPath, schemaPath);

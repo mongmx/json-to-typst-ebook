@@ -2,7 +2,7 @@
 
 A JSON-to-Typst publishing engine for AI-generated ebooks, workbooks, slide decks, and visual content.
 
-This project accepts structured content packages, validates them against public JSON schemas, generates Typst source, and compiles them into PDF outputs with optional PNG page previews.
+This project accepts structured content packages, validates them against the shared AI Flywheel content schemas, generates Typst source, and compiles them into PDF outputs with optional PNG page previews.
 
 It is designed for workflows where one agent writes or structures the content, and this engine handles layout, pagination, visual composition, and export.
 
@@ -114,8 +114,14 @@ Supported slide content includes hero slides, structured presentation slides, cl
 The upstream content agent must produce JSON matching:
 
 ```text
-schemas/ebook-layout.v1.schema.json
-schemas/slides-layout.v1.schema.json
+@mongmx/ai-flywheel-content-schemas/schemas/ebook-layout.v1.schema.json
+@mongmx/ai-flywheel-content-schemas/schemas/slides-layout.v1.schema.json
+```
+
+The schemas live in the shared repository:
+
+```text
+https://github.com/mongmx/ai-flywheel-content-schemas
 ```
 
 Minimal shape:
@@ -175,10 +181,6 @@ Poster background images are resolved relative to the input JSON file and copied
 ## Repository Layout
 
 ```text
-schemas/
-  ebook-layout.v1.schema.json
-  slides-layout.v1.schema.json
-  examples/
 src/
   cli.mjs
   generate-slides-typst.mjs

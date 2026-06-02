@@ -2,6 +2,7 @@
 import { resolve } from 'node:path';
 import { validateFile } from './validate.mjs';
 import { buildBook, buildSlides } from './render.mjs';
+import { ebookSchemaPath, slidesSchemaPath } from './schema-paths.mjs';
 
 function parseArgs(argv) {
   const positional = [];
@@ -39,7 +40,7 @@ try {
       process.exit(1);
     }
 
-    await validateFile(resolve(input), resolve('schemas/ebook-layout.v1.schema.json'));
+    await validateFile(resolve(input), ebookSchemaPath);
     console.log('Content package is valid.');
   } else if (command === 'validate-slides') {
     const input = positional[1];
@@ -48,7 +49,7 @@ try {
       process.exit(1);
     }
 
-    await validateFile(resolve(input), resolve('schemas/slides-layout.v1.schema.json'));
+    await validateFile(resolve(input), slidesSchemaPath);
     console.log('Slides package is valid.');
   } else if (command === 'build') {
     const input = flags.get('input');
