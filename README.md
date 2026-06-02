@@ -177,7 +177,10 @@ Poster-style visual content uses the same `slides-layout.v1` contract with `type
   "quote": "ดวงอาทิตย์\nต่อให้มันร้อนแรงแค่ไหน",
   "subtitle": "สุดท้ายมันก็มีวันที่ต้องดับ",
   "footer": "iKL Studio",
-  "overlay": 58
+  "overlay": 58,
+  "text_position": "bottom_left",
+  "brand_position": "top_left",
+  "footer_position": "bottom_right"
 }
 ```
 
@@ -219,6 +222,24 @@ Rules for remote images:
 - Supported extensions: `.jpg`, `.jpeg`, `.png`, `.webp`.
 - The response should have an `image/*` content type.
 - Do not use preview pages such as ordinary Google Drive share pages unless they are direct-download image URLs.
+
+Each poster can place its text, brand, and footer independently:
+
+```json
+{
+  "text_position": "center_right",
+  "brand_position": "top_left",
+  "footer_position": "bottom_right"
+}
+```
+
+Supported position presets:
+
+```text
+top_left, top_center, top_right
+center_left, center, center_right
+bottom_left, bottom_center, bottom_right
+```
 
 ## Repository Layout
 

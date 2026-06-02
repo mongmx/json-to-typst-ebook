@@ -160,7 +160,90 @@
   ]
 ]
 
-#let slide-poster(background-image, brand-kicker, brand-name, quote, subtitle, footer: "", overlay: 62%) = [
+#let poster-align-x(position) = if position == "top_center" or position == "center" or position == "bottom_center" {
+  center
+} else if position == "top_right" or position == "center_right" or position == "bottom_right" {
+  right
+} else {
+  left
+}
+
+#let poster-place(position, body) = {
+  if position == "top_left" [
+    #place(top + left, dx: margin-x, dy: 0.62in)[#body]
+  ] else if position == "top_center" [
+    #place(top + center, dy: 0.62in)[#body]
+  ] else if position == "top_right" [
+    #place(top + right, dx: -margin-x, dy: 0.62in)[#body]
+  ] else if position == "center_left" [
+    #place(left + horizon, dx: margin-x, dy: 0in)[#body]
+  ] else if position == "center" [
+    #place(center + horizon, dy: 0in)[#body]
+  ] else if position == "center_right" [
+    #place(right + horizon, dx: -margin-x, dy: 0in)[#body]
+  ] else if position == "bottom_center" [
+    #place(bottom + center, dy: -0.72in)[#body]
+  ] else if position == "bottom_right" [
+    #place(bottom + right, dx: -margin-x, dy: -0.72in)[#body]
+  ] else [
+    #place(bottom + left, dx: margin-x, dy: -0.72in)[#body]
+  ]
+}
+
+#let poster-brand(brand-kicker, brand-name, align-x: left) = box(width: 1.9in)[
+  #align(align-x)[
+    #text(font: "Georgia", size: 15pt, weight: 700, fill: white)[
+      #text(fill: gold, size: 10pt)[#brand-kicker]
+      #linebreak()
+      #brand-name
+    ]
+  ]
+]
+
+#let poster-copy(quote, subtitle, align-x: left) = {
+  let copy = box(width: 9.6in)[
+    #align(align-x)[
+      #text(font: "Arial", size: 36pt, weight: 650, fill: white)[#quote]
+      #v(0.15in)
+      #text(font: "Arial", size: 18pt, weight: 400, fill: rgb("#f1f3f5"))[#subtitle]
+    ]
+  ]
+
+  if align-x == center [
+    #copy
+  ] else if align-x == right [
+    #grid(columns: (1fr, 0.05in), gutter: 0.34in, align: (right, top))[
+      #copy
+    ][
+      #rect(width: 0.05in, height: 1.72in, fill: white)
+    ]
+  ] else [
+    #grid(columns: (0.05in, 1fr), gutter: 0.34in, align: (left, top))[
+      #rect(width: 0.05in, height: 1.72in, fill: white)
+    ][
+      #copy
+    ]
+  ]
+}
+
+#let poster-footer(footer, align-x: left) = box(width: 1.8in)[
+  #align(align-x)[
+    #text(size: 8pt, weight: 650, fill: rgb("#d6dbe6"))[#footer]
+  ]
+]
+
+#let slide-poster(
+  background-image,
+  brand-kicker,
+  brand-name,
+  quote,
+  subtitle,
+  footer: "",
+  overlay: 62%,
+  text-position: "bottom_left",
+  brand-position: "top_left",
+  footer-position: "bottom_right",
+) = [
   #box(width: 100%, height: 100%)[
     #place(top + left)[
       #image(background-image, width: page-w, height: page-h, fit: "cover")
@@ -179,28 +262,10 @@
         fill: rgb("#000000").transparentize(18%),
       )
     ]
-    #place(top + left, dx: margin-x, dy: 0.52in)[
-      #text(font: "Georgia", size: 15pt, weight: 700, fill: white)[
-        #text(fill: gold, size: 10pt)[#brand-kicker]
-        #linebreak()
-        #brand-name
-      ]
-    ]
-    #place(bottom + left, dx: margin-x + 0.55in, dy: -0.72in)[
-      #grid(columns: (0.05in, 1fr), gutter: 0.34in, align: (left, top))[
-        #rect(width: 0.05in, height: 1.72in, fill: white)
-      ][
-        #box(width: 9.6in)[
-          #text(font: "Arial", size: 36pt, weight: 650, fill: white)[#quote]
-          #v(0.15in)
-          #text(font: "Arial", size: 18pt, weight: 400, fill: rgb("#f1f3f5"))[#subtitle]
-        ]
-      ]
-    ]
+    #poster-place(brand-position, poster-brand(brand-kicker, brand-name, align-x: poster-align-x(brand-position)))
+    #poster-place(text-position, poster-copy(quote, subtitle, align-x: poster-align-x(text-position)))
     #if footer != "" [
-      #place(bottom + right, dx: -margin-x, dy: -0.35in)[
-        #text(size: 8pt, weight: 650, fill: rgb("#d6dbe6"))[#footer]
-      ]
+      #poster-place(footer-position, poster-footer(footer, align-x: poster-align-x(footer-position)))
     ]
   ]
 ]

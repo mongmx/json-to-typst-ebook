@@ -20,7 +20,10 @@
       "quote": "ดวงอาทิตย์\nต่อให้มันร้อนแรงแค่ไหน",
       "subtitle": "สุดท้ายมันก็มีวันที่ต้องดับ",
       "footer": "iKL Studio",
-      "overlay": 58
+      "overlay": 58,
+      "text_position": "bottom_left",
+      "brand_position": "top_left",
+      "footer_position": "bottom_right"
     }
   ],
   "output": {

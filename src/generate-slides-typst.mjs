@@ -45,7 +45,10 @@ function renderSlide(slide) {
         `${q(slide.quote)}, ` +
         `${q(slide.subtitle)}, ` +
         `footer: ${q(slide.footer)}, ` +
-        `overlay: ${slide.overlay ?? 62}%` +
+        `overlay: ${slide.overlay ?? 62}%, ` +
+        `text-position: ${q(slide.text_position || 'bottom_left')}, ` +
+        `brand-position: ${q(slide.brand_position || 'top_left')}, ` +
+        `footer-position: ${q(slide.footer_position || 'bottom_right')}` +
       `)`;
     case 'hero':
       return `#slide-hero(${q(slide.kicker)}, ${q(slide.title)}, ${q(slide.subtitle)}, ${q(slide.footer)})`;
